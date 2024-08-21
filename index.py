@@ -170,15 +170,6 @@ class SignalViewer (pg.PlotWidget):
         self.signal_data = [signal_data]
         self.plot_item = self.plot(pen=pg.mkPen(color='red'))
         self.plot_item.setData(signal_data[:, 0] ,signal_data[:, 1])
-        # if self.draw_flag==True:
-        #     self.timer.timeout.connect(self.update_signal)
-        #     self.timer.start(self.timer_interval)
-        #     self.draw_flag=False
-        
-        # self.data_index = 0
-        # # Clear existing plot data
-        # # Create a plot item in the viewer and add it to the viewer's plotItem
-        # self.plot_item = self.plot(pen="red")
         y_min = np.min(signal_data[:, 1]) * 2
         y_max = np.max(signal_data[:, 1]) * 2
         # Set the Y-axis limits for the viewbox
@@ -557,8 +548,7 @@ class MainApp(QMainWindow, FORM_CLASS):
                 self.output_viewer.draw_csv_signal(new_signal)
                 self.output_spectrogram.spectrogram_data = new_signal
                 self.output_spectrogram.show_spectrogram(fs=1000)
-                # self.output_viewer.setYRange(*self.input_viewer.getViewBox().viewRange()[1])
-                # self.input_viewer.rewind()
+
             else:
                 self.input_viewer.pause()
                 # Sample audio data (replace this with your actual audio data)
@@ -626,9 +616,7 @@ class MainApp(QMainWindow, FORM_CLASS):
         self.output_viewer.reset_everything()
         self.clear_all()
         self.modify_sliders_ui()
-        # if self.selected_window =="Gaussian":
-        #     self.hamming_slider.setMaximum(21)
-        #     self.hamming_slider.setValue(11)
+
 
     def clear_all(self):
         self.input_viewer.clear()
